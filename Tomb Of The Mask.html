@@ -10,26 +10,38 @@
     </script>
     <base href="https://cdn.jsdelivr.net/gh/rcmcom/tombofthemask@main/">
     <link href="style.css" rel="stylesheet">
-    <meta name="robots" content="noindex,nofollow" />
     
     <style>
-        /* This forces any element with 'ad' or 'sidebar' in the ID to vanish */
-        #sidebarad1, #sidebarad2, .sidebar-frame, .sidebar-close, [id*="sidebar"] {
+        /* Force hidden via CSS as a first line of defense */
+        #sidebarad1, #sidebarad2, .sidebar-frame, .sidebar-close, [id*="sidebar"], [class*="sidebar"] {
             display: none !important;
-            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
             width: 0 !important;
             height: 0 !important;
-            pointer-events: none !important;
-            opacity: 0 !important;
-        }
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
         }
     </style>
+
+    <script>
+        // THE AGGRESSIVE CLEANER
+        const observer = new MutationObserver(((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.id && node.id.includes('sidebar')) {
+                        node.remove();
+                    }
+                    if (node.className && typeof node.className === 'string' && node.className.includes('sidebar')) {
+                        node.remove();
+                    }
+                });
+            });
+        }));
+
+        observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
+    </script>
 </head>
 <body dir="ltr">
     <script src="UnityProgress.js"></script>
