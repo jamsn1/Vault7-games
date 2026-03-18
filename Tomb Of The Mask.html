@@ -11,6 +11,25 @@
     <base href="https://cdn.jsdelivr.net/gh/rcmcom/tombofthemask@main/">
     <link href="style.css" rel="stylesheet">
     <meta name="robots" content="noindex,nofollow" />
+    
+    <style>
+        /* This forces any element with 'ad' or 'sidebar' in the ID to vanish */
+        #sidebarad1, #sidebarad2, .sidebar-frame, .sidebar-close, [id*="sidebar"] {
+            display: none !important;
+            visibility: hidden !important;
+            width: 0 !important;
+            height: 0 !important;
+            pointer-events: none !important;
+            opacity: 0 !important;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body dir="ltr">
     <script src="UnityProgress.js"></script>
@@ -27,8 +46,8 @@
         });
     </script>
 
-    <div class="webgl-content">
-        <div id="gameContainer" style="width: 100%; height: 100%; margin: auto"></div>
+    <div class="webgl-content" style="width: 100%; height: 100%;">
+        <div id="gameContainer" style="width: 100vw; height: 100vh; margin: auto"></div>
     </div>
 </body>
 </html>
